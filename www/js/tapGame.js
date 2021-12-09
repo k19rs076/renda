@@ -7,9 +7,6 @@
 //
 
 /******************************************************/
-    // APIキーの設定
-    var APPLICATION_KEY ="YOUR_NCMB_APPLICATION_KEY";
-    var CLIENT_KEY ="YOUR_NCMB_CLIENT_KEY";
 /******************************************************/
 
 // mBaaSの初期化
@@ -40,15 +37,21 @@ function startGame() {
 function saveScore (name, score) {
     // **********【問題１】名前とスコアを保存しよう！**********
     
+    // 利用するデータベースを指定（存在しなければ生成）
+    var TestClass = ncmb.DataStore("GameScore");
     
-    
-    
-    
-    
-    
-    
-    
-    
+      var testClass = new TestClass();
+      // レコードのフィールドと値を設定
+      testClass.set("name", name);
+      testClass.set("score", score);
+      // レコードをデータベースに登録
+      testClass.save()
+        .then(function(m) {
+          console.log("保存に成功しました");
+        })
+        .catch(function(err) {
+          console.log("保存に失敗しました");
+        })
     
     // ********************************************************
 }
